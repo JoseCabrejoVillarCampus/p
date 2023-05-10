@@ -16,7 +16,6 @@ export default class myTabla extends HTMLElement {
         return await (await fetch(config.uri(myTabla.url))).text();
     }
     constructor() {
-        console.log('constructor running')
 
         super();
         this.attachShadow({
@@ -25,8 +24,6 @@ export default class myTabla extends HTMLElement {
         });
         this.content(
             Promise.resolve(myTabla.components()).then(html => {
-
-                console.log('constructor')
                 this.shadowRoot.innerHTML = html;
                 this.form = this.shadowRoot.querySelector("#myForm");
                 this.form.addEventListener("submit", this.handleEvent.bind(this))
@@ -99,7 +96,6 @@ export default class myTabla extends HTMLElement {
     }
 
     ws.addEventListener("message", (e) => {
-        console.log(e.data);
         this.displayDataInTable(e.data);
         ws.terminate();
     });
@@ -109,7 +105,6 @@ async displayDataInTable(data) {
     try {
         await this.content()
         const tableBody = this.shadowRoot.querySelector("#myData");
-        console.log('display: ', this.shadowRoot)
         /* tableBody.innerHTML = ""; */
 
         if (!Array.isArray(data)) {
@@ -117,8 +112,6 @@ async displayDataInTable(data) {
         }
 
         const sortedData = data.sort((a, b) => a.id - b.id);
-        console.log(data);
-
         sortedData.forEach((user) => {
             const row = document.createElement("tr");
 
@@ -162,7 +155,6 @@ async displayDataInTable(data) {
             tableBody.appendChild(row);
         });
     } catch (error) {
-        console.log(error);
     }
 
 }
