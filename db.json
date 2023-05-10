@@ -1,0 +1,48 @@
+{
+  "peliculas": [
+    {
+      "id": 1,
+      "nombre": "Scary Movie",
+      "director": "jose",
+      "clasificacion": "comedia"
+    },
+    {
+      "id": 2,
+      "nombre": "Scary Movie2",
+      "director": "alberto",
+      "clasificacion": "comedia"
+    },
+    {
+      "id": 3,
+      "nombre": "Bad Boys",
+      "director": "cabrejo",
+      "clasificacion": "accion"
+    },
+    {
+      "id": 4,
+      "nombre": "Bad Boys 2",
+      "director": "villar",
+      "clasificacion": "accion"
+    },
+    {
+      "id": 5,
+      "nombre": "The Ring",
+      "director": "carlos",
+      "clasificacion": "terror"
+    }
+  ],
+  "clasificacion": [
+    {
+      "nombre": "comedia",
+      "id": 1
+    },
+    {
+      "nombre": "accion",
+      "id": 2
+    },
+    {
+      "nombre": "terror",
+      "id": 3
+    }
+  ]
+}
