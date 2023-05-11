@@ -110,10 +110,27 @@ async displayDataInTable(data) {
         if (!Array.isArray(data)) {
             throw new Error("Datos inválidos proporcionados. Se esperaba un array.");
         }
-
         const sortedData = data.sort((a, b) => a.id - b.id);
+        let plantilla = "";
         sortedData.forEach((user) => {
-            const row = document.createElement("tr");
+            plantilla += `
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Director</th>
+                <th>Clasificacion</th>
+                
+            </tr>
+        </thead>
+            <tr>
+            <th>${user.id}</th>
+            <th>${user.nombre}</th>
+            <th>${user.director}</th>
+            <th>${user.clasificacion}</th>
+        </tr> 
+            `;
+            /* const row = document.createElement("tr");
 
             const idCell = document.createElement("td");
             idCell.textContent = user.id;
@@ -141,7 +158,7 @@ async displayDataInTable(data) {
                 });
             });
             deleteCell.appendChild(deleteButton);
-            row.appendChild(deleteCell);
+            row.appendChild(deleteCell); */
 
             /* const editCell = document.createElement("td");
             const editButton = document.createElement("button");
@@ -152,7 +169,7 @@ async displayDataInTable(data) {
             editCell.appendChild(editButton);
             row.appendChild(editCell); */
 
-            tableBody.appendChild(row);
+            tableBody.innerHTML = plantilla;
         });
     } catch (error) {
     }
