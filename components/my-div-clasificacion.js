@@ -1,11 +1,11 @@
 import config from "../config/config.js";
 
 import {
-    GET_PELICULA_ALL,
-    POST_PELICULA,
-    DELETE_PELICULA,
-    PUT_PELICULA,
-    SEARCH_PELICULA
+    GET_CLASIFICACION_ALL,
+    POST_CLASIFICACION,
+    DELETE_CLASIFICACION,
+    PUT_CLASIFICACION,
+    SEARCH_CLASIFICACION
 } from '../constants/requestTypes.js';
 
 
@@ -51,13 +51,13 @@ export default class myTabla extends HTMLElement {
     }
 
     myworker(e) {
-        let ws = new Worker("../config/ws.js", {
+        let ws = new Worker("../config/wsClasificacion.js", {
             type: "module"
         });
-        let wsa = new Worker("../config/ws.js", {
+        let wsa = new Worker("../config/wsClasificacion.js", {
             type: "module"
         });
-        let wsb = new Worker("../config/ws.js", {
+        let wsb = new Worker("../config/wsClasificacion.js", {
             type: "module"
         });
         let data = Object.fromEntries(new FormData(e.target));
@@ -67,33 +67,33 @@ export default class myTabla extends HTMLElement {
 
         if (valor === "get") {
             ws.postMessage({
-                type: GET_PELICULA_ALL,
+                type: GET_CLASIFICACION_ALL,
             });
         } else if (valor === "get2") {
             wsa.postMessage({
-                type: GET_PELICULA_ALL,
+                type: GET_CLASIFICACION_ALL,
             });
         } else if (valor === "get3") {
             wsb.postMessage({
-                type: GET_PELICULA_ALL,
+                type: GET_CLASIFICACION_ALL,
             })
         } else if (valor === "post") {
             ws.postMessage({
-                type: POST_PELICULA,
+                type: POST_CLASIFICACION,
             });
         } else if (valor === "delete") {
             ws.postMessage({
-                type: DELETE_PELICULA,
+                type: DELETE_CLASIFICACION,
                 arg: data
             });
         } else if (valor === "put") {
             ws.postMessage({
-                type: PUT_PELICULA,
+                type: PUT_CLASIFICACION,
                 arg: data
             });
         } else if (valor === "search") {
             ws.postMessage({
-                type: SEARCH_PELICULA,
+                type: SEARCH_CLASIFICACION,
                 arg: data.id
             });
         }
@@ -123,14 +123,13 @@ export default class myTabla extends HTMLElement {
             }
 
             const sortedData = data.sort((a, b) => a.id - b.id);
+            console.log(data);
 
             let plantilla = `
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Nombre</th>
-                    <th>Director</th>
-                    <th>Clasificacion</th>
+                <th>Id</th>
+                <th>Nombre</th>
                 </tr>
             </thead>
         `;
@@ -139,15 +138,13 @@ export default class myTabla extends HTMLElement {
             <tr>
             <th>${user.id}</th>
             <th>${user.nombre}</th>
-            <th>${user.director}</th>
-            <th>${user.clasificacion}</th>
 
         </tr> 
             `;
                 tableBody.innerHTML = plantilla;
             });
         } catch (error) {}
-        console.log(data[0].clasificacion);
+        console.log(data[0].nombre);
     }
     async displayDataInTable2(data) {
         try {
@@ -158,15 +155,13 @@ export default class myTabla extends HTMLElement {
                 throw new Error("Datos inválidos proporcionados. Se esperaba un array.");
             }
 
-            const filteredData = data.filter(user => user.clasificacion === "comedia");
+            const filteredData = data.filter(user => user.nombre === "comedia");
 
             let plantilla = `
                 <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>Nombre</th>
-                        <th>Director</th>
-                        <th>Clasificacion</th>
+                    <th>Id</th>
+                    <th>Nombre</th>
                     </tr>
                 </thead>
             `;
@@ -174,10 +169,8 @@ export default class myTabla extends HTMLElement {
             filteredData.forEach((user) => {
                 plantilla += `
                     <tr>
-                        <th>${user.id}</th>
-                        <th>${user.nombre}</th>
-                        <th>${user.director}</th>
-                        <th>${user.clasificacion}</th>
+                    <th>${user.id}</th>
+                    <th>${user.nombre}</th>
                     </tr> 
                 `;
             });
@@ -197,15 +190,13 @@ export default class myTabla extends HTMLElement {
                 throw new Error("Datos inválidos proporcionados. Se esperaba un array.");
             }
 
-            const filteredData1 = data.filter(user => user.director === "jose");
+            const filteredData1 = data.filter(user => user.id === "1");
 
             let plantilla = `
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Nombre</th>
-                    <th>Director</th>
-                    <th>Clasificacion</th>
+                <th>Id</th>
+                <th>Nombre</th>
                 </tr>
             </thead>
         `;
@@ -216,8 +207,6 @@ export default class myTabla extends HTMLElement {
             <tr>
             <th>${user.id}</th>
             <th>${user.nombre}</th>
-            <th>${user.director}</th>
-            <th>${user.clasificacion}</th>
 
         </tr> 
             `;

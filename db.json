@@ -2,15 +2,9 @@
   "peliculas": [
     {
       "id": 1,
-      "nombre": "Scary Movie",
+      "nombre": "jose",
       "director": "jose",
-      "clasificacion": "comedia"
-    },
-    {
-      "id": 2,
-      "nombre": "Scary Movie2",
-      "director": "alberto",
-      "clasificacion": "comedia"
+      "clasificacion": "2"
     },
     {
       "id": 3,
@@ -29,6 +23,12 @@
       "nombre": "The Ring",
       "director": "carlos",
       "clasificacion": "terror"
+    },
+    {
+      "id": "2",
+      "nombre": "Scary Movie 2",
+      "director": "Alberto",
+      "clasificacion": "comedia"
     }
   ],
   "clasificacion": [
@@ -37,12 +37,8 @@
       "id": 1
     },
     {
-      "nombre": "accion",
-      "id": 2
-    },
-    {
-      "nombre": "terror",
-      "id": 3
+      "id": 2,
+      "nombre": "action"
     }
   ]
 }

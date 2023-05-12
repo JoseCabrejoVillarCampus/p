@@ -3,39 +3,39 @@ let headers = new Headers({
 });
 let puerto = 4008;
 
-const postPeliculas = async (arg) => {
+const postClasificacion = async (arg) => {
     arg.id = (arg.id) ? arg.id : Date.now();
     let config = {
         method: "POST",
         headers: headers,
         body: JSON.stringify(arg)
     };
-    return await (await fetch(`http://localhost:${puerto}/peliculas`, config)).json();
+    return await (await fetch(`http://localhost:${puerto}/clasificacion`, config)).json();
 }
-const getPeliculasAll = async () => {
+const getClasificacionAll = async () => {
     let config = {
         method: "GET",
         headers: headers
     };
-    return await (await fetch(`http://localhost:${puerto}/peliculas`, config)).json();
+    return await (await fetch(`http://localhost:${puerto}/clasificacion`, config)).json();
 }
-const deletePeliculas = async (arg) => {
+const deleteClasificacion = async (arg) => {
     let config = {
         method: "DELETE",
         headers: headers,
     };
-    return await (await fetch(`http://localhost:${puerto}/peliculas/${arg.id}`, config)).json();
+    return await (await fetch(`http://localhost:${puerto}/clasificacion/${arg.id}`, config)).json();
 }
-const putPeliculas = async (arg) => {
+const putClasificacion = async (arg) => {
     let config = {
         method: "PUT",
         headers: headers,
         body: JSON.stringify(arg)
     };
-    return await (await fetch(`http://localhost:${puerto}/peliculas/${arg.id}`, config)).json();
+    return await (await fetch(`http://localhost:${puerto}/clasificacion/${arg.id}`, config)).json();
 }
-const searchPeliculas = async (arg) => {
-    const response = await fetch(`http://localhost:${puerto}/peliculas`);
+const searchClasificacion = async (arg) => {
+    const response = await fetch(`http://localhost:${puerto}/clasificacion`);
     const data = await response.json();
 
     if (response.ok) {
@@ -47,9 +47,9 @@ const searchPeliculas = async (arg) => {
     }
 };
 export default {
-    postPeliculas,
-    getPeliculasAll,
-    deletePeliculas,
-    putPeliculas,
-    searchPeliculas,
+    postClasificacion,
+    getClasificacionAll,
+    deleteClasificacion,
+    putClasificacion,
+    searchClasificacion
 }
